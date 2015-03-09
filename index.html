@@ -1,15 +1,23 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="css/makeSquare.css">
-		<script scr="jquery-1.11.2.min.js"></script>
-		<title>Make Square</title>
-	</head>
-	
-	<body>
-		<script type="text/javascript" src="js/makeSquare.js"></script> 
-		<h1>Make Square</h1>
-		<canvas id="grid" width="200" height="100" style="border:1px solid #000000;" ></canvas>
-	</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="lib/jquery.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <link rel="short icon" type="image/x-icon" href="images/icon.png">
+    <title>Make Squares</title>
+  </head>
+  
+  <body>
+    <h1 id="title">Make Squares</h1>
+    <button type="button" class="btn btn-primary">START</button>
+    <br>
+    <canvas id="grid"></canvas>
+    <script type="text/javascript" src="js/cell.js"></script> 
+    <script type="text/javascript" src="js/makeSquare.js"></script> 
+  </body>
 </html>

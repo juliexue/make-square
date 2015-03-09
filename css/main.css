@@ -1,0 +1,15 @@
+body{
+  margin: 0 auto;
+  text-align: center;
+}
+
+#title {
+  font: normal 300% 'century gothic', arial;
+  color: blue;
+  margin: 30px;
+}
+
+#grid{
+  border: 2px solid blue;
+  margin: 30px;
+}
