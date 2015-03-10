@@ -3,13 +3,17 @@ body{
   text-align: center;
 }
 
+button {
+  text-align: block;
+}
+
 #title {
   font: normal 300% 'century gothic', arial;
   color: blue;
-  margin: 30px;
+  margin: 10px;
 }
 
 #grid{
   border: 2px solid blue;
-  margin: 30px;
+  margin: 10px;
 }
