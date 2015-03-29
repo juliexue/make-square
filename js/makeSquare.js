@@ -23,7 +23,7 @@ function startGame(){
 }
 
 function getRandomColorNum(){
-  return Math.floor(Math.random()*colors.length-1)+1;
+  return Math.floor(Math.random()*(colors.length-1))+1;
 }
 
 function getRandomPiece(){
@@ -36,8 +36,11 @@ function startNewPiece() {
   curState = 0;
   curPiece = getRandomPiece();
   curColor = getRandomColorNum();
+  console.log(curColor+":"+colors[curColor]);
+  console.log(curPiece);
   colorPiece();
 }
+
 function erasePiece(){
   for(var i = 0; i < curPiece[curState].length; i++){
     for(var j = 0; j < curPiece[curState][i].length; j++){
@@ -75,9 +78,14 @@ function validMove(pX, pY, state){
       }
     }
   }
-  x = pX;
-  y = pY;
   return true;
+}
+
+function makeMove(pX, pY){
+  if(validMove(pX, pY, curState)){
+    x = pX;
+    y = pY;
+  }
 }
 
 function validRotate(){
@@ -91,18 +99,20 @@ function validRotate(){
 }
 
 function moveBlock(key){
-  var valid = false;
   erasePiece();
   if(key === "up"){
     validRotate();
   }else if(key === "down"){
-    validMove(x+1, y, curState);
+    makeMove(x+1, y);
   }else if(key === "right"){
-    validMove(x, y+1, curState);
+    makeMove(x, y+1);
   }else if(key === "left"){
-    validMove(x, y-1, curState);
+    makeMove(x, y-1);
   }
-
+  var done = validMove(x+1,y, curState)
   colorPiece();
   colourGrid();
+  if(!done){
+    startNewPiece();
+  }
 }
