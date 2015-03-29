@@ -22,11 +22,7 @@ function drawGrid(){
 function colourGrid(){
   for( var i = 0; i < HEIGHT; i++){
     for( var j = 0 ; j < WIDTH; j++){
-      if(table[i][j] == 1){
-        ctx.fillStyle = "Blue";
-      }else if(table[i][j] == 0){
-        ctx.fillStyle = "white";
-      }
+      ctx.fillStyle = colors[table[i][j]];
       ctx.fillRect(j*GRIDSIZE,i*GRIDSIZE,GRIDSIZE,GRIDSIZE);
     }
   }
