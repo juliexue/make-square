@@ -4,6 +4,7 @@ var GRIDSIZE = 25;
 var table = [];
 var x, y;
 var curPiece, curColor;
+var curState = 0;
 
 function init(){
   for( var i = 0; i < HEIGHT; i++){
@@ -32,14 +33,15 @@ function getRandomPiece(){
 function startNewPiece() {
   x = 0;
   y = 5;
+  curState = 0;
   curPiece = getRandomPiece();
   curColor = getRandomColorNum();
   colorPiece();
 }
 function erasePiece(){
-  for(var i = 0; i < curPiece[0].length; i++){
-    for(var j = 0; j < curPiece[0][i].length; j++){
-      if (curPiece[0][i][j] != 0) {
+  for(var i = 0; i < curPiece[curState].length; i++){
+    for(var j = 0; j < curPiece[curState][i].length; j++){
+      if (curPiece[curState][i][j] != 0) {
         table[x+i][y+j] = 0;
       }
     }
@@ -47,58 +49,58 @@ function erasePiece(){
 }
 
 function colorPiece(){
-  for(var i = 0; i < curPiece[0].length; i++){
-    for(var j = 0; j < curPiece[0][i].length; j++){
-      if (curPiece[0][i][j] != 0) {
+  for(var i = 0; i < curPiece[curState].length; i++){
+    for(var j = 0; j < curPiece[curState][i].length; j++){
+      if (curPiece[curState][i][j] != 0) {
         table[x+i][y+j] = curColor;
       }
     }
   }
 }
 
-function validMove(pX, pY){
+function validMove(pX, pY, state){
   if(!(0 <= pX && pX < HEIGHT && 0 <= pY && pY < WIDTH)){
     return false;
   }
-  if(!(0 <= (pX+curPiece[0].length-1) && (pX+curPiece[0].length-1) < HEIGHT)){
+  if(!(0 <= (pX+curPiece[state].length-1) && (pX+curPiece[state].length-1) < HEIGHT)){
     return false;
   }
-  for(var i = 0; i < curPiece[0].length; i++){
-    if(!(0 <= (pY+curPiece[0][i].length-1) && (pY+curPiece[0][i].length-1) < WIDTH)){
+  for(var i = 0; i < curPiece[state].length; i++){
+    if(!(0 <= (pY+curPiece[state][i].length-1) && (pY+curPiece[state][i].length-1) < WIDTH)){
       return false;
     }
-    for(var j = 0; j < curPiece[0][i].length; j++){
-      if((curPiece[0][i][j] != 0)&&(table[pX+i][pY+j]!= 0)){
+    for(var j = 0; j < curPiece[state][i].length; j++){
+      if((curPiece[state][i][j] != 0)&&(table[pX+i][pY+j]!= 0)){
           return false;
       }
     }
   }
+  x = pX;
+  y = pY;
   return true;
+}
+
+function validRotate(){
+  var tempState = curState + 1;
+  if(tempState >= curPiece.length){
+    tempState = 0;
+  }
+  if(validMove(x, y, tempState)){
+    curState = tempState;
+  }
 }
 
 function moveBlock(key){
   var valid = false;
   erasePiece();
   if(key === "up"){
-    if(validMove(x-1,y)){
-      x--;
-      valid = true;
-    }
+    validRotate();
   }else if(key === "down"){
-    if(validMove(x+1,y)){
-      x++;
-      valid = true;
-    }
+    validMove(x+1, y, curState);
   }else if(key === "right"){
-    if(validMove(x,y+1)){
-      y++;
-      valid = true;
-    }
+    validMove(x, y+1, curState);
   }else if(key === "left"){
-    if(validMove(x,y-1)){
-      y--;
-      valid = true;
-    }
+    validMove(x, y-1, curState);
   }
 
   colorPiece();
