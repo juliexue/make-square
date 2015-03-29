@@ -1,49 +1,109 @@
-var onePiece = [
+var tPiece = [
                 [
-                  [1]
-                ]
-               ];
-
-var twoPiece = [
-                [
-                  [1,1]
+                  [0,'x',0],
+                  ['x','x','x']
                 ],
                 [
-                  [1],
-                  [1]
+                  [0,'x'],
+                  ['x','x'],
+                  [0,'x']
+                ],
+                [
+                  ['x','x','x'],
+                  [0,'x',0]
+                ],
+                [
+                  ['x',0],
+                  ['x','x'],
+                  ['x',0]
                 ]
                ];
 
-var threePieceLong = [
-                      [
-                        [1,1,1]
-                      ],
-                      [
-                        [1],
-                        [1],
-                        [1]
-                      ]
-                     ];
+var iPiece = [
+                  [
+                    ['x','x','x','x']
+                  ],
+                [
+                  ['x'],
+                  ['x'],
+                  ['x'],
+                  ['x']
+                ]
+               ];
 
-var threePieceCurve = [
-                        [
-                          [1,1],
-                          [0,1]
-                        ],
-                        [
-                          [0,1],
-                          [1,1]
-                        ],
-                        [
-                          [1,0],
-                          [1,1]
-                        ],
-                        [ 
-                          [1,1],
-                          [1,0]
-                        ],
-                      ];                    
+var oPiece = [
+              [
+                ['x','x'],
+                ['x','x']
+              ]
+            ];
 
-var pieces = [onePiece, twoPiece, threePieceCurve, threePieceLong];
+var jPiece = [
+              [
+                ['x','x','x'],
+                [0,0,'x']
+              ],
+              [
+                ['x','x'],
+                ['x',0],
+                ['x',0]
+              ],
+              [
+                ['x',0,0],
+                ['x','x','x']
+              ],
+              [
+                [0,'x'],
+                [0,'x'],
+                ['x','x']
+              ]
+            ];
+
+var lPiece = [
+              [
+                ['x','x','x'],
+                ['x',0,0]
+              ],
+              [
+                ['x',0],
+                ['x',0],
+                ['x','x']
+              ],
+              [
+                [0,0,'x'],
+                ['x','x','x']
+              ],
+              [
+                ['x','x'],
+                [0,'x'],
+                [0,'x']
+              ]
+             ];
+
+var zPiece = [
+              [
+                ['x','x',0],
+                [0,'x','x']
+              ],
+              [
+                [0,'x'],
+                ['x','x'],
+                ['x',0]
+              ]
+             ];
+
+var sPiece = [
+              [
+                [0,'x','x'],
+                ['x','x',0]
+              ],
+              [
+                ['x',0],
+                ['x','x'],
+                [0,'x']
+              ]
+             ];
+
+var pieces = [iPiece, oPiece, tPiece, jPiece, lPiece, sPiece, zPiece];
 
 var colors = ['white','yellow', 'orange', 'lime', 'blue','red','magenta','cyan'];

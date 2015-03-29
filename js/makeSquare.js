@@ -22,11 +22,11 @@ function startGame(){
 }
 
 function getRandomColorNum(){
-  return Math.floor(Math.random()*7)+1;
+  return Math.floor(Math.random()*colors.length-1)+1;
 }
 
 function getRandomPiece(){
-   return pieces[Math.floor(Math.random()*4)];
+   return pieces[Math.floor(Math.random()*pieces.length)];
 }
 
 function startNewPiece() {
@@ -34,7 +34,6 @@ function startNewPiece() {
   y = 5;
   curPiece = getRandomPiece();
   curColor = getRandomColorNum();
-  console.log(curPiece);
   colorPiece();
 }
 function erasePiece(){
@@ -58,14 +57,19 @@ function colorPiece(){
 }
 
 function validMove(pX, pY){
+  if(!(0 <= pX && pX < HEIGHT && 0 <= pY && pY < WIDTH)){
+    return false;
+  }
+  if(!(0 <= (pX+curPiece[0].length-1) && (pX+curPiece[0].length-1) < HEIGHT)){
+    return false;
+  }
   for(var i = 0; i < curPiece[0].length; i++){
+    if(!(0 <= (pY+curPiece[0][i].length-1) && (pY+curPiece[0][i].length-1) < WIDTH)){
+      return false;
+    }
     for(var j = 0; j < curPiece[0][i].length; j++){
-      if (curPiece[0][i][j] != 0) {
-        if(table[pX+i][pY+j]!= 0){
-          if(!(0 <= pX && pX <HEIGHT && 0 <= pY && pY < WIDTH)){
-            return false;
-          }
-        }
+      if((curPiece[0][i][j] != 0)&&(table[pX+i][pY+j]!= 0)){
+          return false;
       }
     }
   }
@@ -74,34 +78,29 @@ function validMove(pX, pY){
 
 function moveBlock(key){
   var valid = false;
+  erasePiece();
   if(key === "up"){
     if(validMove(x-1,y)){
-      erasePiece();
       x--;
       valid = true;
     }
   }else if(key === "down"){
     if(validMove(x+1,y)){
-      erasePiece();
       x++;
       valid = true;
     }
   }else if(key === "right"){
     if(validMove(x,y+1)){
-      erasePiece();
       y++;
       valid = true;
     }
   }else if(key === "left"){
     if(validMove(x,y-1)){
-      erasePiece();
       y--;
       valid = true;
     }
   }
 
-  if(valid){
-    colorPiece();
-  }
+  colorPiece();
   colourGrid();
 }
