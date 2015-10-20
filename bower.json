@@ -1,0 +1,26 @@
+{
+  "name": "make-squares",
+  "version": "0.0.0",
+  "homepage": "https://github.com/juliexue/make-squares",
+  "authors": [
+    "Julie Xue <julie.xue11@gmail.com>"
+  ],
+  "description": "javascript game",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "javascript"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
