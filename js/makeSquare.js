@@ -36,8 +36,6 @@ function startNewPiece() {
   curState = 0;
   curPiece = getRandomPiece();
   curColor = getRandomColorNum();
-  console.log(curColor+":"+colors[curColor]);
-  console.log(curPiece);
   colorPiece();
 }
 
@@ -113,6 +111,50 @@ function moveBlock(key){
   colorPiece();
   colourGrid();
   if(!done){
+    cleanCompletedSquare();
     startNewPiece();
+  }
+}
+
+function moveGridDown(){
+  var newTable = [];
+  for( var i = 0; i < HEIGHT; i++){
+    newTable[i] = [];
+    for( var j = 0 ; j < WIDTH; j++){
+      newTable[i][j] = 0;
+    }
+  }
+
+  for(var j = 0; j < WIDTH; j++){
+    var heightCount = HEIGHT-1;
+    for(var i = HEIGHT-1; i>=0 && heightCount >= 0; i--){
+      while(heightCount >= 0 && table[heightCount][j] === 'd') {
+        heightCount--;
+      } 
+      if(heightCount >= 0){
+        newTable[i][j] = table[heightCount][j];
+      }
+      heightCount--;
+    }
+  }
+  table = newTable;
+  colourGrid();
+}
+
+function cleanCompletedSquare(){
+  for(var i = 0; i < HEIGHT; i++){
+    var fullLine = true;
+    for(var j = 0; j < WIDTH && fullLine; j++){
+      if (table[i][j] === 0) {
+        fullLine = false;
+      }
+    }
+
+    if(fullLine){
+      for(var j = 0; j < WIDTH && fullLine; j++){
+        table[i][j] = 'd';
+      }
+      moveGridDown();
+    }
   }
 }
